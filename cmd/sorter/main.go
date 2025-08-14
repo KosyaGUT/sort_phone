@@ -1,7 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+
+	"github.com/kosyagut/sortphone/internal/reader"
+	"github.com/kosyagut/sortphone/internal/sorter"
+	"github.com/kosyagut/sortphone/internal/writer"
+)
 
 func main() {
-	fmt.Print("Enter your phone number: ")
+	start := time.Now()
+	read := reader.ReadFile("phones.txt")
+	sortedRead := sorter.SortPhone(read)
+	writer.WriterFile(sortedRead)
+	t := time.Now()
+	elapsed := t.Sub(start)
+	fmt.Println(elapsed)
 }
